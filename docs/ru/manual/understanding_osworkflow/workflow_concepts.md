@@ -25,15 +25,17 @@ So, to summarize, a workflow consists of a number of Steps. A step has a current
 
 Подводя итоги, a workflow состоит из ряда шагов (Steps). Шаг (step) имеет текущий статус (current status) (например, Queued, Underway, или Finished). Шаг имеет набор действий (Actions), которые могут быть выполнены на данном шаге. Действие имеет условия (Conditions), в зависимости от которых оно доступно для выполнения, ровно так же, как функция (Functions) выполняется при наличии условий. Действие имеет результат, которое меняет состояние (state) and текущий шаг в workflow.
 
-## Results, Joins, and Splits
+## Results, Joins, и Splits
 
-### Unconditional Result
+### Безусловные результат(Unconditional Result)
 
-For every action, it is required that there exist one result, called the unconditional-result. A result is nothing more than a series of directives that tell OSWorkflow what the next task to do is. This involves making a transition from one state to the next state(s) in the state machine that makes up a given workflow.
+Для каждого действия (action) требуется, чтобы существовал хотя бы один результат (result), называемый безусловным результатом (unconditional-result). Результат - это ничто иное, как набор инструкций, предписаний (directives) ,которые сообщают OSWorkflow, какую следующую задачу нужно выполнить. Это включает в себя переход (transition) из одного состояния (state) в следующий (или следующие) состояния в state machine, что поддерживает workflow в рабочем состоянии.
 
-### Conditional Results
+### Условные результаты (Conditional Results)
 
 A conditional result is an extension of an unconditional result. It is identical, except for the fact that it requires one or more additional sub-elements: *condition*. The first conditional result that evaluates to true (using the types *AND* or *OR*) will dictate the transition that takes place due to the result of any given action taken by the user. Additional information regarding conditions can be found below.
+
+Условные результаты (conditional result) это общий случай безусловного результата (unconditional result). Они полностью идентичны, за исключением того факта, что они требуют одного или нескольких дополнительных суб-элементов (additional sub-elements): *состояниие (condition)*. The first conditional result that evaluates to true (using the types *AND* or *OR*) will dictate the transition that takes place due to the result of any given action taken by the user. Additional information regarding conditions can be found below.
 
 ### There are three different results (conditional or unconditional) that can occur:
 
