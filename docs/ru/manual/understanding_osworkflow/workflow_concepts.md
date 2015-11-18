@@ -5,7 +5,7 @@
 
 OSWorkflow is very unique compared to other workflow engines one might be familiar with. In order to completely grasp OSWorkflow and properly harness the features available, it is important that one understand the core concepts that form the foundation for OSWorkflow.
 
-OSWorkflow - единственный в своем роде, относительно других движков, который может изучить каждый. Для полного понимания OSWorkflow и всех его функций важно, чтобы каждый понимал основные понятия, которые формируют базу OSWorkflow.
+OSWorkflow - единственный в своем роде среди других движков workflow, который может изучить каждый. Для полного понимания OSWorkflow и всех его функций важно, чтобы каждый понимал основные понятия, которые формируют базу OSWorkflow.
 
 ## Steps, Status, and Actions
 
