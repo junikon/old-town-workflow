@@ -5,11 +5,17 @@
 
 OSWorkflow is very unique compared to other workflow engines one might be familiar with. In order to completely grasp OSWorkflow and properly harness the features available, it is important that one understand the core concepts that form the foundation for OSWorkflow.
 
+OSWorkflow - единственный в своем роде, относительно других движков, которым может изучить каждый. Для полного понимания OSWorkflow и всех его функций важно, чтобы каждый понимал основные понятия, которые формируют базу OSWorkflow.
+
 ## Steps, Status, and Actions
 
 Any particular __workflow instance__ can have one or more __current steps__ at any given moment. Every current step has a __status value__ associated to it. Status values of the current steps constitute __workflow status__ for that workflow instance. *The actual status values are entirely up to the application developer and/or project manager*. A status value can be, for example "Underway", or "Queued".
 
+Каждый __экземпляр workflow__ может иметь один или несколько __current steps__ в любой момент. Каждый текущий step имеет __status value__ связанный с ним. Status values у каждого current steps основывает __workflow status__ для этой workflow instance. *Фактическое (актуальное) значение статуса полность достигается разработчиком приложения и/или менеджером проекта*. Значение статуса может быть, например "Underway (на ходу, в процессе)", or "Queued (В очереди)".
+
 For the workflow to progress, a __transition__ must take place in the finite state machine that represents a workflow instance. Once a step is completed it can not be current anymore. Usually a new current step is created immediately thereafter, which keeps the workflow going. The final status value of the completed step is set by the *old-status* attribute. It happens just before the transition to another step. __Old-status__ must already be defined when a new transition takes place in the workflow. __It can be any value you please, but "Finished" usually works fine for most applications__.
+
+Для работы workflow , __transition__ должно занять место(свершиться) в конечной state machine, которая представляет экземпляр workflow. После того, как step завершен, он перестает быть текущим (current). Обычно новый текущий шаг (step) создается незамедлительно, что поддерживает работу workflow. Конечный значение статуса завершенного step устанавливается в аттрибут *old-status*. Это происходит до того, как transition перейдет в другой step. __Old-status__ должен быть уже определен, когда новая transition займет место в workflow. __Это может быть любым значением, каким вы пожелаете, но "Finished" обычно подходит для большинства приложений__.
 
 __Transition__ itself is a result of an __action__. A step may have many actions connected to it. Which particular action will be launched is determined by the end user, external event or automatically by a trigger. Depending on the action accomplished, a certain transition takes place. Actions can be restricted to particular groups and users or current state of the workflow. Each action must have one __unconditional result__ (default) and zero or more __conditional results__.
 
