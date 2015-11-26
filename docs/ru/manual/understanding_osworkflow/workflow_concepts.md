@@ -39,13 +39,23 @@ A conditional result is an extension of an unconditional result. It is identical
 
 ### There are three different results (conditional or unconditional) that can occur:
 
+### Возможны 3 результата (условные или безусловные):
+
 * A new single step/status combo
 * A split in to two or more step/status combos
 * A join that joins together this transition as well as others to a new single step/status combo
 
+* Новая комбинация шаг/статус
+* Разделение на две или более комбинаций шаг/статус
+* Слияние, которое объединяет текущий переход с новой одиночной комбинацией шаг/статус
+
+
 Depending on what kind of behavior you are looking for, your XML workflow descriptor will look different. Please read the DTD (which provides documentation as well) in [Appendix A](http://www.opensymphony.com/osworkflow/workflow_2_6.dtd) for more information. __One caveat: currently a split or a join cannot result in an immediate split or join again__.
 
+В зависимости от того, какое поведение вы ожидаете, ваш дескриптор XML workflow descriptor может выглядеть по-разному. Пожалуйста, прочитайте DTD (который содержит отличную документацию) в [Приложении A](http://www.opensymphony.com/osworkflow/workflow_2_6.dtd) для более подробной информации. __Один нюанс: в настоящее время разделении или слияние необязательно приводит непосредственно к разделению или слиянию__.
+
 #### A single step/status result can be specified simply by:
+#### Одиночный шаг/статус может быть определен следующим путем:
 
 
 ```xml
@@ -55,7 +65,11 @@ Depending on what kind of behavior you are looking for, your XML workflow descri
 
 If the status is not Queued, then a third requirement is the owner of the new step. Besides specifying information about the next state, results also can specify __validators__ and __post-functions__. These will be discussed below.
 
+Если статус не Queued, тогда третье требование является владельцем нового шага (step?). Кроме того, указав информацию о следующем состоянии (state), результат (results) так же могут определить __валидаторы (validators)__ и __post-functions__. Это будет обсуждаться ниже.
+
 In certain cases the result of an action does not require a transition to another step. Such a result may be specified by setting the step value to -1.  For example, we can change the above example to remain in the current step (or steps) as follows:
+
+В некоторых случаях результат действия не требует перехода на следующий шаг. Такой результат может требовать устанвки значения шага в -1.  Например, мы можем изменить пример выше чтобы остаться на текущем шаге (шагах):
 
 
 ```xml
