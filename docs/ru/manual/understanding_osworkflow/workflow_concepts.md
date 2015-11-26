@@ -77,7 +77,7 @@ In certain cases the result of an action does not require a transition to anothe
                       status="Underway" owner="${someOwner}"/>
 ```
 
-#### Splitting from one state to multiple states can be achieved by:
+#### Разделение из одного состояния в множественные может достигаться следующим путем:
 
 
 ```xml
@@ -93,7 +93,7 @@ In certain cases the result of an action does not require a transition to anothe
 </splits>
 ```
 
-#### Joins are the most complex cases. A typical join might look like:
+#### Слияние - более сложный случай. Типичное слияние может выглядеть следующим образом:
 
 
 ```xml
@@ -121,15 +121,22 @@ In certain cases the result of an action does not require a transition to anothe
 </joins>
 ```
 
-The above might seem somewhat cryptic, but the main thing to notice is that the *condition element* uses a special variable *"jn"* that can be used to make up expressions that determine when the join actually occurs. Essentially, this expression statement says *"proceed with the join when the steps with IDs 6 and 8 that are transitioning to this join have a status of Finished".*
+The above might seem somewhat cryptic, but the main thing to notice is that the *элемент condition*, uses a special variable *"jn"* that can be used to make up expressions that determine when the join actually occurs. Essentially, this expression statement says *"proceed with the join when the steps with IDs 6 and 8 that are transitioning to this join have a status of Finished".*
 
-## External Functions
+Пример выше может показаться непонятным, но важный момент, на который стоит обратить внимание *condition element* использующий специальную переменную *"jn"*, которая может быть использована для составления выражения и определения, где именно слияние должно произойти. По существу, объявление этого выражения говорит *"продолжай выполнение с объединением где шаг с IDs 6 и 8, переход по которым приведет к объединения со статусом Finished".*
+
+## Внешние функции
 
 OSWorkflow defines a standard way for external business logic and services to be defined and executed. This is accomplished by using "functions". A function usually encapsulates functionality that is external to the workflow instance itself, perhaps related to updating an external entity or system with workflow information, or notifying an external system regarding a change in workflow status.
 
+OSWorkflow определяет стандартный путь для внешней бизнес-логики и сервисов, которые должны устанавливаться и выполняться. Это осуществляется использованием функций "functions". Функция обычно воплощает функциоанльность, которая является внешней относительно текущей сущности workflow, может быть которая отвечает за обновление внешней сущности или системы, или уведомляет внешнюю систему об изменении статуса workflow
+
 __There are two types of functions: pre and post step functions.__
+__Существуют два тип функций: дошаговые и постшаговые функции (pre и post step functions).__
 
 Pre functions are functions that are executed before the workflow makes a particular transition. An example is a pre function that sets up the name of the caller to use as the result for the state change that is about to take place. Another example of a pre-function is a function that updates the most recent caller of an action. Both of these are provided as standard utility functions that are very useful for practical workflows.
+
+Pre functions - это функции, которые выполняются до того, как workflow делает конкретный переход. Пример одной из pre function that sets up the name of the caller to use as the result for the state change that is about to take place. Another example of a pre-function is a function that updates the most recent caller of an action. Both of these are provided as standard utility functions that are very useful for practical workflows.
 
 Post functions have the same range of applicability as pre functions, except that they are executed after the state change has taken place. An example of a post function is one that sends out an email to interested parties that the workflow has had a particular action performed on it. For example, when a document in the 'research' step has a 'markReadyForReview' action taken, the reviewers group is emailed.
 
