@@ -147,30 +147,48 @@ There are many reasons for including pre and post functions. One is that if the 
 Есть много причин для использования pre and post functions. Одна из них, если пользователь кликнул на кнопку "done" дважды и отправил дважды вызов "execute action", а это действие действие имеет pre function, которая занимает много времени для выполнения, тогда возможна ситуация, когда долгоработающая функция вызывается несколько раз, потому что переход (transition) не был еще совершен, и в этом случае OSWorkflow думает, что вызов функции второй раз верен. So changing that function to be a post function is what has to happen. __Generally pre functions are for simple, quick executions, and post are where the "meat" goes.__
 
 Functions can be specified in two separate locations; steps and actions.
+Функция может быть определена в двух назависимых местах: в шагах и действиях (steps and actions)
 
 Usually, a pre or post function is specified in an action. The general case is that along with transitioning the workflow, a functions is used to 'do something', whether it be notifying a third party, sending an email, or simply setting variables for future use. The following diagram will help illustrate action level functions:
+
+Обычно, pre или post function определяется в каком-либо действии. В большинстве случаев вместе с переходами по worflow, функции используются, чтобы сделать что-то, будь то уведомление, отправка email, или просто установка переменной для будущего использования. Следующая диаграмма поможет проиллюстрировать принцип действия функций:
 
 ![Action Functions](actionfunctions.png)
 
 In the case of pre and post functions being specified on steps, the usage is slightly different. Pre-functions specified on a step will be executed __before__ the workflow is transitioned to that step. Note that these functions will be applied indiscriminantly to ALL transitions to the step, even those that originate in the step itself (for example, moving from Queued to Underway within the same step will cause the invocation of any step pre-functions specified).
 
+В случае, когда pre и post functions определена в шагах, их использование немного отличается. Pre-functions определенная в шаге будет выполнена __до__ того, как workflow перейдет на этот самый шаг. Стоит обратить внимание, что эти функции будут применены без разбора ко всем переходам, даже к тем, которые происходят в самом шаге (например, переход от Queued к Underway в похожем шаге будет причиной вызова pre-functions в других шагах).
+
 Similarly, step post-functions will be called prior to the workflow transitioning __out__ of the step, even if it's to change state and remain within the step.
 
+Аналогично шаг с post-functions будет вызываться до перехода workflow __вне__ шага, даже если изменения состояния должно остаться в пределах шага.
+
 The following diagram illustrates the invocation order. Note that the action box is abbreviated and could well contain pre and post functions of its own.
+
+Следующая диаграмм иллюстрирует последовательность вызовов. Стоит обратить внимание, что action box сокращен и вполне может содержать pre и post functions внутри себя.
 
 ![Step Functions](stepfunction.png)
 
 You can find more information on [Functions](functions.md).
+Больше информации можно найти по ссылке [Functions](functions.md).
 
 ## Trigger Functions
 
 Trigger functions are just like any other function, except that they aren't associated with only one action. They are also identified with a unique ID that is used at a later time (when a trigger is fired) to be executed by the Quartz job scheduler (or any other job scheduler). These functions usually run under the context of a system user and not a regular user working in the workflow. Trigger functions are invoked by using OldTown Workflow API from an outside source, such as a job scheduler like Quartz.
 
+Trigger functions похожи на другие функции, отличие в том, что они не связаны только лишь с одним действием. Они так же определены с уникальным ID, который будет задействован в будущем (когда триггер сработает) чтобы выполнить задание в планировщике Quartz job scheduler (или в любом другом). Эти функции, как правило, запускаются под системным пользователем (?), а не под обычным пользователем, работающим с workflow. Trigger functions вызываются с помощью OldTown Workflow API из внешнего источника, например из планировщика, похожего на Quartz.
+
+
+
 You can find more information on [Trigger functions](trigger_functions.md).
+Больше информации [Trigger functions](trigger_functions.md).
 
 ## Validators
+## Валидаторы
 
 A validator is nothing more than some code that validates the input that can be paired with an action. If the input is deemed to be valid, according to the validator, the action will be executed. If the input is invalid, the __InvalidInputException__ will be thrown back to the calling client - usually a JSP or servlet.
+
+Валидаторы - это не более, чем код, который проверяет input, который может быть сопряжен с определенным действием. Если input считается валидным в соотствии с валидатором, то действие выполняется. Если же input невалидный, 
 
 Validators follow many of the same rules as Functions. You can find out more about [Validators](validators.md).
 
